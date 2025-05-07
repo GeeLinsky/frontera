@@ -1,6 +1,6 @@
 # Frontera
 
-**Frontera** is a modern frontend UI built with Tailwind CSS, and Shadcn/ui.
+Frontera is a modern frontend UI built with Tailwind CSS, and Shadcn/ui.
 
 ## To Run
 
