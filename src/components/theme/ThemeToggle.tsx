@@ -1,0 +1,119 @@
+import { useState } from "react"
+import { Palette, Shuffle, ChevronsUpDown } from "lucide-react"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Button } from "@/components/ui/button"
+import { useConfigContext } from "@/context/ConfigContext"
+import { CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from "@/components/ui/command"
+import { cn } from "@/lib/utils"
+import { Check } from "lucide-react"
+import { Command } from "@/components/ui/command"
+import ColorToggle from "@/components/color/ColorToggle"
+
+const themes = [
+  { value: "theme-amber-minimal", label: "Amber Minimal" },
+  { value: "theme-bold-tech", label: "Bold Tech" },
+  { value: "theme-bubblegum", label: "Bubblegum" },
+  { value: "theme-caffeine", label: "Caffeine" },
+  { value: "theme-candyland", label: "Candyland" },
+  { value: "theme-catppuccin", label: "Catppuccin" },
+  { value: "theme-claude", label: "Claude" },
+  { value: "theme-claymorphism", label: "Claymorphism" },
+  { value: "theme-clean-slate", label: "Clean Slate" },
+  { value: "theme-cosmic-night", label: "Cosmic Night" },
+  { value: "theme-cyberpunk", label: "Cyberpunk" },
+  { value: "theme-default", label: "Default" },
+  { value: "theme-doom-64", label: "Doom 64" },
+  { value: "theme-elegant-luxury", label: "Elegant Luxury" },
+  { value: "theme-graphite", label: "Graphite" },
+  { value: "theme-kodama-grove", label: "Kodama Grove" },
+  { value: "theme-midnight-bloom", label: "Midnight Bloom" },
+  { value: "theme-mocha-mousse", label: "Mocha Mousse" },
+  { value: "theme-modern-minimal", label: "Modern Minimal" },
+  { value: "theme-mono", label: "Mono" },
+  { value: "theme-nature", label: "Nature" },
+  { value: "theme-neo-brutalism", label: "Neo Brutalism" },
+  { value: "theme-northern-lights", label: "Northern Lights" },
+  { value: "theme-ocean-breeze", label: "Ocean Breeze" },
+  { value: "theme-pastel-dreams", label: "Pastel Dreams" },
+  { value: "theme-perpetuity", label: "Perpetuity" },
+  { value: "theme-quantum-rose", label: "Quantum Rose" },
+  { value: "theme-retro-arcade", label: "Retro Arcade" },
+  { value: "theme-solar-dusk", label: "Solar Dusk" },
+  { value: "theme-starry-night", label: "Starry Night" },
+  { value: "theme-sunset-horizon", label: "Sunset Horizon" },
+  { value: "theme-supabase", label: "Supabase" },
+  { value: "theme-t3-chat", label: "T3 Chat" },
+  { value: "theme-tangerine", label: "Tangerine" },
+  { value: "theme-twitter", label: "Twitter" },
+  { value: "theme-vercel", label: "Vercel" },
+  { value: "theme-vintage-paper", label: "Vintage Paper" },
+]
+
+export default function ThemeSelector() {
+  const { setTheme, theme } = useConfigContext()
+
+  const [open, setOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState(false)
+
+  const handleThemeChange = (value: string) => setTheme(value)
+
+  const selectRandomTheme = () => {
+    const randomIndex = Math.floor(Math.random() * themes.length)
+    const randomTheme = themes[randomIndex].value
+    setTheme(randomTheme)
+  }
+
+  const getThemeLabel = (value: string) => {
+    const theme = themes.find(theme => theme.value === value)
+    return theme ? theme.label : "Select theme..."
+  }
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger>
+        <Button variant="outline" size="icon" className="h-8 w-8">
+          <Palette />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent align="end">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h4 className="font-medium leading-none">Theme</h4>
+          </div>
+          <div className="flex gap-2 items-center">
+            <Popover open={openDropdown} onOpenChange={setOpenDropdown}>
+              <PopoverTrigger asChild className="flex justify-between">
+                <Button variant="outline" role="combobox" aria-expanded={openDropdown} className="flex-1">
+                  {getThemeLabel(theme)}
+                  <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="p-0" align="start">
+                <Command>
+                  <CommandInput placeholder="Search themes..." />
+                  <CommandList>
+                    <CommandEmpty>No theme found.</CommandEmpty>
+                    <CommandGroup>
+                      {themes.map(themeOption => (
+                        <CommandItem key={themeOption.value} value={themeOption.value} onSelect={handleThemeChange}>
+                          <Check
+                            className={cn("mr-2 h-4 w-4", themeOption.value === theme ? "opacity-100" : "opacity-0")}
+                          />
+                          {themeOption.label}
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
+            <Button variant="outline" size="icon" onClick={selectRandomTheme} aria-label="Select a random theme">
+              <Shuffle className="h-4 w-4" />
+            </Button>
+            <ColorToggle variant="outline" size="icon" />
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  )
+}
