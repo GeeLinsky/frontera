@@ -23,13 +23,13 @@ export const ConfigProvider = ({ children }: { children: React.ReactNode }) => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("color")
       if (stored) return stored === "dark"
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
+      return window.matchMedia("(prefers-color-scheme: light)").matches
     }
     return false
   })
 
   const [theme, setTheme] = useState(() => {
-    const defaultTheme = "theme-twitter"
+    const defaultTheme = "theme-doom-64"
 
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("theme")
