@@ -5,10 +5,11 @@ import classNames from "classnames"
 import { linkClassName } from "@/lib/utils"
 import ThemeToggle from "@/components/theme/ThemeToggle"
 import ColorToggle from "@/components/color/ColorToggle"
+import { isDesktop } from "react-device-detect"
 
 export default function DigitalCard() {
   return (
-    <main className="sm:min-h-screen flex items-center justify-center p-4">
+    <main className={classNames("flex items-center justify-center p-4", { "min-h-screen": isDesktop })}>
       <Card className="w-full max-w-md overflow-hidden shadow-lg relative pb-0">
         {/* Theme Buttons in Top Right */}
         <div className="absolute top-4 right-4 flex gap-2 z-10">
