@@ -8,7 +8,7 @@ import ColorToggle from "@/components/color/ColorToggle"
 
 export default function DigitalCard() {
   return (
-    <main className="min-h-screen flex items-center justify-center p-4">
+    <main className="sm:min-h-screen flex items-center justify-center p-4">
       <Card className="w-full max-w-md overflow-hidden shadow-lg relative pb-0">
         {/* Theme Buttons in Top Right */}
         <div className="absolute top-4 right-4 flex gap-2 z-10">
