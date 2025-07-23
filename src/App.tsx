@@ -1,11 +1,22 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import HomePage from "./pages/HomePage"
 import PageNotFoundPage from "./pages/PageNotFoundPage"
 import { useConfigContext } from "./context/ConfigContext"
 import { useEffect } from "react"
+import { logPageView } from "./utils/analytics"
+import { initGA } from "./utils/analytics"
 
 const App = () => {
   const { isDark, theme } = useConfigContext()
+  const location = useLocation()
+
+  useEffect(() => {
+    initGA()
+  }, [])
+
+  useEffect(() => {
+    logPageView(location.pathname + location.search)
+  }, [location])
 
   useEffect(() => {
     const root = window.document.documentElement
