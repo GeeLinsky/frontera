@@ -35,6 +35,15 @@ export default function DigitalCard() {
             <h2 className="text-lg text-muted-foreground">Staff Software Engineer, UI/UX Lead</h2>
           </div>
 
+          {/* Bio Section */}
+          <div className="text-center mb-6 px-2">
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              I'm passionate about staying at the forefront of technology, ensuring my work reflects the latest
+              innovations and best practices. When I'm not building software, you'll find me exploring the
+              mountains—carving fresh lines on the slopes in winter or trekking alpine trails in summer.
+            </p>
+          </div>
+
           {/* Simplified List */}
           <div className="space-y-4 mb-6">
             {/* Employer */}
