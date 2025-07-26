@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Palette, Shuffle, ChevronsUpDown } from "lucide-react"
+import { Palette, Shuffle, ChevronsUpDown, ChevronUp, ChevronDown } from "lucide-react"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 import { useConfigContext } from "@/context/ConfigContext"
@@ -63,6 +63,18 @@ export default function ThemeSelector() {
     setTheme(randomTheme)
   }
 
+  const selectPreviousTheme = () => {
+    const currentIndex = themes.findIndex(t => t.value === theme)
+    const previousIndex = currentIndex <= 0 ? themes.length - 1 : currentIndex - 1
+    setTheme(themes[previousIndex].value)
+  }
+
+  const selectNextTheme = () => {
+    const currentIndex = themes.findIndex(t => t.value === theme)
+    const nextIndex = currentIndex >= themes.length - 1 ? 0 : currentIndex + 1
+    setTheme(themes[nextIndex].value)
+  }
+
   const getThemeLabel = (value: string) => {
     const theme = themes.find(theme => theme.value === value)
     return theme ? theme.label : "Select theme..."
@@ -75,7 +87,7 @@ export default function ThemeSelector() {
           <Palette />
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="end">
+      <PopoverContent align="end" className="w-100">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h4 className="font-medium leading-none">Theme</h4>
@@ -107,6 +119,12 @@ export default function ThemeSelector() {
                 </Command>
               </PopoverContent>
             </Popover>
+            <Button variant="outline" size="icon" onClick={selectPreviousTheme} aria-label="Select previous theme">
+              <ChevronUp className="h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="icon" onClick={selectNextTheme} aria-label="Select next theme">
+              <ChevronDown className="h-4 w-4" />
+            </Button>
             <Button variant="outline" size="icon" onClick={selectRandomTheme} aria-label="Select a random theme">
               <Shuffle className="h-4 w-4" />
             </Button>

@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Mail, Github, Linkedin, Building2 } from "lucide-react"
+import { MapPin, Mail, Github, Linkedin, Building2, GraduationCap, TreePine } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import classNames from "classnames"
 import { linkClassName } from "@/lib/utils"
@@ -13,8 +13,8 @@ export default function DigitalCard() {
       <Card className="w-full max-w-md overflow-hidden shadow-lg relative pb-0">
         {/* Theme Buttons in Top Right */}
         <div className="absolute top-4 right-4 flex gap-2 z-10">
-          <ColorToggle variant="outline" size="icon" className="h-8 w-8" />
           <ThemeToggle />
+          <ColorToggle variant="outline" size="icon" className="h-8 w-8" />
         </div>
 
         <CardContent className="p-6">
@@ -56,11 +56,33 @@ export default function DigitalCard() {
               <span className="text-sm">Salt Lake City, Utah</span>
             </div>
 
+            {/* School */}
+            <div className="flex items-center">
+              <GraduationCap className="h-5 w-5 text-muted-foreground mr-3 flex-shrink-0" />
+              <span className="text-sm">Texas State University</span>
+            </div>
+
             {/* Email */}
             <div className="flex items-center">
               <Mail className="h-5 w-5 text-muted-foreground mr-3 flex-shrink-0" />
               <a href="mailto:garrett@geelinsky.com" className={classNames("text-sm", linkClassName)}>
                 garrett@geelinsky.com
+              </a>
+            </div>
+          </div>
+
+          {/* Websites Developed */}
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-3 text-center">Websites Developed</h3>
+            <div className="flex items-center">
+              <TreePine className="h-5 w-5 text-muted-foreground mr-3 flex-shrink-0" />
+              <a
+                href="https://boltscape.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={classNames("text-sm", linkClassName)}
+              >
+                boltscape.com
               </a>
             </div>
           </div>
