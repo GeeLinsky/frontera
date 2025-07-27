@@ -87,15 +87,15 @@ export default function ThemeSelector() {
           <Palette />
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="end" className="w-100">
+      <PopoverContent align="end" className="w-60">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h4 className="font-medium leading-none">Theme</h4>
           </div>
-          <div className="flex gap-2 items-center">
+          <div className="space-y-2">
             <Popover open={openDropdown} onOpenChange={setOpenDropdown}>
               <PopoverTrigger asChild className="flex justify-between">
-                <Button variant="outline" role="combobox" aria-expanded={openDropdown} className="flex-1">
+                <Button variant="outline" role="combobox" aria-expanded={openDropdown} className="w-full">
                   {getThemeLabel(theme)}
                   <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
                 </Button>
@@ -119,16 +119,18 @@ export default function ThemeSelector() {
                 </Command>
               </PopoverContent>
             </Popover>
-            <Button variant="outline" size="icon" onClick={selectPreviousTheme} aria-label="Select previous theme">
-              <ChevronUp className="h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="icon" onClick={selectNextTheme} aria-label="Select next theme">
-              <ChevronDown className="h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="icon" onClick={selectRandomTheme} aria-label="Select a random theme">
-              <Shuffle className="h-4 w-4" />
-            </Button>
-            <ColorToggle variant="outline" size="icon" />
+            <div className="flex gap-2 items-center justify-center">
+              <Button variant="outline" size="icon" onClick={selectPreviousTheme} aria-label="Select previous theme">
+                <ChevronUp className="h-4 w-4" />
+              </Button>
+              <Button variant="outline" size="icon" onClick={selectNextTheme} aria-label="Select next theme">
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+              <Button variant="outline" size="icon" onClick={selectRandomTheme} aria-label="Select a random theme">
+                <Shuffle className="h-4 w-4" />
+              </Button>
+              <ColorToggle variant="outline" size="icon" />
+            </div>
           </div>
         </div>
       </PopoverContent>
