@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Mail, Github, Linkedin, Building2, GraduationCap, TreePine } from "lucide-react"
+import { MapPin, Mail, Github, Linkedin, Building2, GraduationCap } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import classNames from "classnames"
 import { linkClassName } from "@/lib/utils"
@@ -67,22 +67,6 @@ export default function DigitalCard() {
               <Mail className="h-5 w-5 text-muted-foreground mr-3 flex-shrink-0" />
               <a href="mailto:garrett@geelinsky.com" className={classNames("text-sm", linkClassName)}>
                 garrett@geelinsky.com
-              </a>
-            </div>
-          </div>
-
-          {/* Featured Work */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-3 text-center">Featured Work</h3>
-            <div className="flex items-center">
-              <TreePine className="h-5 w-5 text-muted-foreground mr-3 flex-shrink-0" />
-              <a
-                href="https://boltscape.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={classNames("text-sm", linkClassName)}
-              >
-                boltscape.com
               </a>
             </div>
           </div>
