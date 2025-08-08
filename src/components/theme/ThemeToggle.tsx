@@ -11,6 +11,7 @@ import ColorToggle from "@/components/color/ColorToggle"
 
 const themes = [
   { value: "theme-amber-minimal", label: "Amber Minimal" },
+  { value: "theme-amethyst-haze", label: "Amethyst Haze" },
   { value: "theme-bold-tech", label: "Bold Tech" },
   { value: "theme-bubblegum", label: "Bubblegum" },
   { value: "theme-caffeine", label: "Caffeine" },
@@ -33,11 +34,13 @@ const themes = [
   { value: "theme-nature", label: "Nature" },
   { value: "theme-neo-brutalism", label: "Neo Brutalism" },
   { value: "theme-northern-lights", label: "Northern Lights" },
+  { value: "theme-notebook", label: "Notebook" },
   { value: "theme-ocean-breeze", label: "Ocean Breeze" },
   { value: "theme-pastel-dreams", label: "Pastel Dreams" },
   { value: "theme-perpetuity", label: "Perpetuity" },
   { value: "theme-quantum-rose", label: "Quantum Rose" },
   { value: "theme-retro-arcade", label: "Retro Arcade" },
+  { value: "theme-soft-pop", label: "Soft Pop" },
   { value: "theme-solar-dusk", label: "Solar Dusk" },
   { value: "theme-starry-night", label: "Starry Night" },
   { value: "theme-sunset-horizon", label: "Sunset Horizon" },
@@ -47,6 +50,7 @@ const themes = [
   { value: "theme-twitter", label: "Twitter" },
   { value: "theme-vercel", label: "Vercel" },
   { value: "theme-vintage-paper", label: "Vintage Paper" },
+  { value: "theme-violet-bloom", label: "Violet Bloom" },
 ]
 
 export default function ThemeSelector() {
@@ -106,14 +110,16 @@ export default function ThemeSelector() {
                   <CommandList>
                     <CommandEmpty>No theme found.</CommandEmpty>
                     <CommandGroup>
-                      {themes.map(themeOption => (
-                        <CommandItem key={themeOption.value} value={themeOption.value} onSelect={handleThemeChange}>
-                          <Check
-                            className={cn("mr-2 h-4 w-4", themeOption.value === theme ? "opacity-100" : "opacity-0")}
-                          />
-                          {themeOption.label}
-                        </CommandItem>
-                      ))}
+                      {themes
+                        .sort((a, b) => a.label.localeCompare(b.label))
+                        .map(themeOption => (
+                          <CommandItem key={themeOption.value} value={themeOption.value} onSelect={handleThemeChange}>
+                            <Check
+                              className={cn("mr-2 h-4 w-4", themeOption.value === theme ? "opacity-100" : "opacity-0")}
+                            />
+                            {themeOption.label}
+                          </CommandItem>
+                        ))}
                     </CommandGroup>
                   </CommandList>
                 </Command>
