@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Mail, Github, Linkedin, Building2, GraduationCap, ExternalLink } from "lucide-react"
+import { MapPin, Mail, Github, Linkedin, Building2, GraduationCap, ExternalLink, TreePine } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import classNames from "classnames"
 import { linkClassName } from "@/lib/utils"
@@ -71,6 +71,23 @@ export default function DigitalCard() {
                 className={classNames("text-sm flex items-center gap-1", linkClassName)}
               >
                 garrett@geelinsky.com
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+          </div>
+
+          {/* Featured Work Section */}
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-3 text-center">Featured Work</h3>
+            <div className="flex items-center">
+              <TreePine className="h-5 w-5 text-muted-foreground mr-3 flex-shrink-0" />
+              <a
+                href="https://boltscape.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={classNames("text-sm flex items-center gap-1", linkClassName)}
+              >
+                boltscape.com
                 <ExternalLink className="h-3 w-3" />
               </a>
             </div>
