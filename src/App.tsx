@@ -5,6 +5,7 @@ import { useConfigContext } from "./context/ConfigContext"
 import { useEffect } from "react"
 import { logPageView } from "./utils/analytics"
 import { initGA } from "./utils/analytics"
+import ComponentsShowcasePage from "./pages/ComponentShowcasePage"
 
 const App = () => {
   const { isDark, theme } = useConfigContext()
@@ -41,6 +42,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/component-showcase" element={<ComponentsShowcasePage />} />
       <Route path="*" element={<PageNotFoundPage />} />
     </Routes>
   )
