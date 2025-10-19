@@ -9,22 +9,89 @@ import {
   ExternalLink,
   TreePine,
   Mountain,
+  Download,
+  Code,
 } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
 import classNames from "classnames"
 import { linkClassName } from "@/lib/utils"
 import ThemeToggle from "@/components/theme/ThemeToggle"
 import ColorToggle from "@/components/color/ColorToggle"
 import { isDesktop } from "react-device-detect"
+import { Link } from "react-router-dom"
+import { useConfigContext } from "@/context/ConfigContext"
 
 export default function DigitalCard() {
+  const { isDark } = useConfigContext()
+
   return (
     <main className={classNames("flex items-center justify-center p-4", { "min-h-screen": isDesktop })}>
       <Card className="w-full max-w-md overflow-hidden shadow-lg relative pb-0">
+        {/* Action Buttons in Top Left */}
+        <div className="absolute top-4 left-4 flex gap-2 z-10">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outline" size="icon" className="h-8 w-8" asChild>
+                  <a
+                    href="https://statix.geelinsky.com/files/Garrett_Polinsky_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Download className="h-4 w-4" />
+                    <span className="sr-only">PDF Resume</span>
+                  </a>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>PDF Resume</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outline" size="icon" className="h-8 w-8" asChild>
+                  <Link to="/component-showcase">
+                    <Code className="h-4 w-4" />
+                    <span className="sr-only">Component Showcase</span>
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Component Showcase</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+
         {/* Theme Buttons in Top Right */}
         <div className="absolute top-4 right-4 flex gap-2 z-10">
-          <ThemeToggle />
-          <ColorToggle variant="outline" size="icon" className="h-8 w-8" />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div>
+                  <ThemeToggle />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Change Theme</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <ColorToggle variant="outline" size="icon" className="h-8 w-8" />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{isDark ? "Light Mode" : "Dark Mode"}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
 
         <CardContent className="p-6">

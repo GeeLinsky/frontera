@@ -15,6 +15,7 @@ import {
   MessageSquare,
   Loader2,
   Home,
+  Book,
 } from "lucide-react"
 import { format } from "date-fns"
 import { useState } from "react"
@@ -151,6 +152,28 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
+import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@/components/ui/button-group"
+import { Empty, EmptyHeader, EmptyTitle, EmptyDescription, EmptyContent, EmptyMedia } from "@/components/ui/empty"
+import { Field, FieldLabel, FieldDescription, FieldError, FieldGroup } from "@/components/ui/field"
+import {
+  Item,
+  ItemMedia,
+  ItemContent,
+  ItemTitle,
+  ItemDescription,
+  ItemActions,
+  ItemGroup,
+  ItemSeparator,
+} from "@/components/ui/item"
+import { Kbd, KbdGroup } from "@/components/ui/kbd"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupText,
+  InputGroupInput,
+} from "@/components/ui/input-group"
+import { Spinner } from "@/components/ui/spinner"
 
 function Users(props: any) {
   return (
@@ -210,15 +233,16 @@ const ComponentShowcase = () => {
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" asChild>
+            <a href="https://ui.shadcn.com" target="_blank">
+              <Book className="h-4 w-4" />
+              Documentation
+            </a>
+          </Button>
+          <Button asChild>
             <Link to="/">
               <Home className="h-4 w-4" />
               Home
             </Link>
-          </Button>
-          <Button variant="outline" asChild>
-            <a href="https://ui.shadcn.com" target="_blank">
-              Documentation
-            </a>
           </Button>
         </div>
       </div>
@@ -528,6 +552,58 @@ const ComponentShowcase = () => {
               </CardContent>
             </Card>
 
+            {/* Button Group */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Button Group</CardTitle>
+                <CardDescription>Group related buttons together</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label>Horizontal Group</Label>
+                  <div className="mt-2">
+                    <ButtonGroup>
+                      <Button variant="outline">Left</Button>
+                      <Button variant="outline">Middle</Button>
+                      <Button variant="outline">Right</Button>
+                    </ButtonGroup>
+                  </div>
+                </div>
+                <div>
+                  <Label>With Separators</Label>
+                  <div className="mt-2">
+                    <ButtonGroup>
+                      <Button variant="outline">One</Button>
+                      <ButtonGroupSeparator />
+                      <Button variant="outline">Two</Button>
+                      <ButtonGroupSeparator />
+                      <Button variant="outline">Three</Button>
+                    </ButtonGroup>
+                  </div>
+                </div>
+                <div>
+                  <Label>With Text</Label>
+                  <div className="mt-2">
+                    <ButtonGroup>
+                      <ButtonGroupText>Status:</ButtonGroupText>
+                      <Button variant="outline">Active</Button>
+                      <Button variant="outline">Inactive</Button>
+                    </ButtonGroup>
+                  </div>
+                </div>
+                <div>
+                  <Label>Vertical Group</Label>
+                  <div className="mt-2">
+                    <ButtonGroup orientation="vertical">
+                      <Button variant="outline">Top</Button>
+                      <Button variant="outline">Middle</Button>
+                      <Button variant="outline">Bottom</Button>
+                    </ButtonGroup>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Input */}
             <Card>
               <CardHeader>
@@ -553,6 +629,57 @@ const ComponentShowcase = () => {
                     <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                     <Input id="with-icon" placeholder="Search..." className="pl-8" />
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Input Group */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Input Group</CardTitle>
+                <CardDescription>Input with addons, buttons, and text</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label>With Icon Addon</Label>
+                  <InputGroup className="mt-2">
+                    <InputGroupAddon align="inline-start">
+                      <Search className="h-4 w-4" />
+                    </InputGroupAddon>
+                    <InputGroupInput placeholder="Search..." />
+                  </InputGroup>
+                </div>
+                <div>
+                  <Label>With Button</Label>
+                  <InputGroup className="mt-2">
+                    <InputGroupInput placeholder="Enter email..." />
+                    <InputGroupAddon align="inline-end">
+                      <InputGroupButton>Submit</InputGroupButton>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </div>
+                <div>
+                  <Label>With Text Addon</Label>
+                  <InputGroup className="mt-2">
+                    <InputGroupAddon align="inline-start">
+                      <InputGroupText>https://</InputGroupText>
+                    </InputGroupAddon>
+                    <InputGroupInput placeholder="example.com" />
+                  </InputGroup>
+                </div>
+                <div>
+                  <Label>With Multiple Addons</Label>
+                  <InputGroup className="mt-2">
+                    <InputGroupAddon align="inline-start">
+                      <Mail className="h-4 w-4" />
+                    </InputGroupAddon>
+                    <InputGroupInput placeholder="Enter email..." />
+                    <InputGroupAddon align="inline-end">
+                      <InputGroupButton size="icon-xs">
+                        <Check className="h-3.5 w-3.5" />
+                      </InputGroupButton>
+                    </InputGroupAddon>
+                  </InputGroup>
                 </div>
               </CardContent>
             </Card>
@@ -833,6 +960,35 @@ const ComponentShowcase = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Field */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Field</CardTitle>
+                <CardDescription>Form field with label, description, and error handling</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FieldGroup className="space-y-4">
+                  <Field orientation="vertical">
+                    <FieldLabel htmlFor="field-name">Full Name</FieldLabel>
+                    <Input id="field-name" placeholder="Enter your name" />
+                    <FieldDescription>This is your display name.</FieldDescription>
+                  </Field>
+
+                  <Field orientation="vertical">
+                    <FieldLabel htmlFor="field-email">Email Address</FieldLabel>
+                    <Input id="field-email" type="email" placeholder="email@example.com" aria-invalid />
+                    <FieldError errors={[{ message: "Invalid email address" }]} />
+                  </Field>
+
+                  <Field orientation="horizontal">
+                    <FieldLabel htmlFor="field-horizontal">Notifications</FieldLabel>
+                    <Switch id="field-horizontal" />
+                    <FieldDescription>Receive email notifications</FieldDescription>
+                  </Field>
+                </FieldGroup>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
@@ -1084,6 +1240,102 @@ const ComponentShowcase = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Item */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Item</CardTitle>
+                <CardDescription>Display structured list items with media, content, and actions</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ItemGroup>
+                  <Item variant="outline">
+                    <ItemMedia variant="icon">
+                      <User className="h-4 w-4" />
+                    </ItemMedia>
+                    <ItemContent>
+                      <ItemTitle>John Doe</ItemTitle>
+                      <ItemDescription>Software Engineer at Company Inc.</ItemDescription>
+                    </ItemContent>
+                    <ItemActions>
+                      <Button size="sm" variant="ghost">
+                        View
+                      </Button>
+                    </ItemActions>
+                  </Item>
+                  <ItemSeparator />
+                  <Item variant="outline">
+                    <ItemMedia variant="icon">
+                      <Mail className="h-4 w-4" />
+                    </ItemMedia>
+                    <ItemContent>
+                      <ItemTitle>New Message</ItemTitle>
+                      <ItemDescription>You have received a new message from the team.</ItemDescription>
+                    </ItemContent>
+                    <ItemActions>
+                      <Badge>New</Badge>
+                    </ItemActions>
+                  </Item>
+                  <ItemSeparator />
+                  <Item variant="outline">
+                    <ItemMedia variant="icon">
+                      <Settings className="h-4 w-4" />
+                    </ItemMedia>
+                    <ItemContent>
+                      <ItemTitle>Settings Updated</ItemTitle>
+                      <ItemDescription>Your preferences have been saved successfully.</ItemDescription>
+                    </ItemContent>
+                  </Item>
+                </ItemGroup>
+              </CardContent>
+            </Card>
+
+            {/* Kbd */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Kbd</CardTitle>
+                <CardDescription>Display keyboard shortcuts</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">Save:</span>
+                  <KbdGroup>
+                    <Kbd>⌘</Kbd>
+                    <Kbd>S</Kbd>
+                  </KbdGroup>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">Copy:</span>
+                  <KbdGroup>
+                    <Kbd>Ctrl</Kbd>
+                    <Kbd>C</Kbd>
+                  </KbdGroup>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">Paste:</span>
+                  <KbdGroup>
+                    <Kbd>Ctrl</Kbd>
+                    <Kbd>V</Kbd>
+                  </KbdGroup>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">Undo:</span>
+                  <KbdGroup>
+                    <Kbd>⌘</Kbd>
+                    <Kbd>Z</Kbd>
+                  </KbdGroup>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">Find:</span>
+                  <KbdGroup>
+                    <Kbd>
+                      <Search className="h-3 w-3" />
+                    </Kbd>
+                    <Kbd>F</Kbd>
+                  </KbdGroup>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
@@ -1286,6 +1538,58 @@ const ComponentShowcase = () => {
                     </CommandGroup>
                   </CommandList>
                 </Command>
+              </CardContent>
+            </Card>
+
+            {/* Spinner */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Spinner</CardTitle>
+                <CardDescription>Loading indicator</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <Spinner className="h-4 w-4" />
+                  <span className="text-sm">Small</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Spinner className="h-6 w-6" />
+                  <span className="text-sm">Medium</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Spinner className="h-8 w-8" />
+                  <span className="text-sm">Large</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Button disabled>
+                    <Spinner className="mr-2 h-4 w-4" />
+                    Loading...
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Empty */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Empty</CardTitle>
+                <CardDescription>Empty state placeholder</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Empty className="border">
+                  <EmptyHeader>
+                    <EmptyMedia variant="icon">
+                      <Search className="h-6 w-6" />
+                    </EmptyMedia>
+                    <EmptyTitle>No results found</EmptyTitle>
+                    <EmptyDescription>
+                      We couldn't find any results matching your search. Try adjusting your filters or search terms.
+                    </EmptyDescription>
+                  </EmptyHeader>
+                  <EmptyContent>
+                    <Button>Clear filters</Button>
+                  </EmptyContent>
+                </Empty>
               </CardContent>
             </Card>
           </div>
