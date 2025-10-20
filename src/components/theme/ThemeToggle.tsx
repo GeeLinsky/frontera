@@ -23,6 +23,7 @@ const themes = [
   { value: "theme-cosmic-night", label: "Cosmic Night" },
   { value: "theme-cyberpunk", label: "Cyberpunk" },
   { value: "theme-default", label: "Default" },
+  { value: "theme-darkmatter", label: "Darkmatter" },
   { value: "theme-doom-64", label: "Doom 64" },
   { value: "theme-elegant-luxury", label: "Elegant Luxury" },
   { value: "theme-graphite", label: "Graphite" },
