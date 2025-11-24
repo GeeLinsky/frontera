@@ -41,6 +41,7 @@ const themes = [
   { value: "theme-perpetuity", label: "Perpetuity" },
   { value: "theme-quantum-rose", label: "Quantum Rose" },
   { value: "theme-retro-arcade", label: "Retro Arcade" },
+  { value: "theme-sage-garden", label: "Sage Garden" },
   { value: "theme-soft-pop", label: "Soft Pop" },
   { value: "theme-solar-dusk", label: "Solar Dusk" },
   { value: "theme-starry-night", label: "Starry Night" },
