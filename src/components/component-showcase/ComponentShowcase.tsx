@@ -15,7 +15,6 @@ import {
   MessageSquare,
   Loader2,
   Home,
-  Book,
 } from "lucide-react"
 import { format } from "date-fns"
 import { useState } from "react"
@@ -174,6 +173,19 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group"
 import { Spinner } from "@/components/ui/spinner"
+import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/components/ui/input-otp"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+import { NativeSelect, NativeSelectOption, NativeSelectOptGroup } from "@/components/ui/native-select"
+import { toast } from "react-toastify"
 
 function Users(props: any) {
   return (
@@ -226,25 +238,14 @@ const ComponentShowcase = () => {
     <div>
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:items-center">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">shadcn/ui Component Showcase</h1>
-          <p className="text-muted-foreground">
-            A comprehensive collection of all shadcn/ui components and their variants
-          </p>
+          <h1 className="text-3xl font-bold tracking-tight">Component Showcase</h1>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" asChild>
-            <a href="https://ui.shadcn.com" target="_blank">
-              <Book className="h-4 w-4" />
-              Documentation
-            </a>
-          </Button>
-          <Button asChild>
-            <Link to="/">
-              <Home className="h-4 w-4" />
-              Home
-            </Link>
-          </Button>
-        </div>
+        <Button asChild>
+          <Link to="/">
+            <Home className="h-4 w-4" />
+            Home
+          </Link>
+        </Button>
       </div>
 
       <Separator className="my-6" />
@@ -476,6 +477,108 @@ const ComponentShowcase = () => {
                         </SheetHeader>
                       </SheetContent>
                     </Sheet>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Drawer */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Drawer</CardTitle>
+                <CardDescription>Mobile-friendly panel that slides from edges</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-2">
+                    <Drawer>
+                      <DrawerTrigger asChild>
+                        <Button variant="outline">Open Bottom Drawer</Button>
+                      </DrawerTrigger>
+                      <DrawerContent>
+                        <DrawerHeader>
+                          <DrawerTitle>Edit profile</DrawerTitle>
+                          <DrawerDescription>Make changes to your profile here.</DrawerDescription>
+                        </DrawerHeader>
+                        <div className="p-4">
+                          <div className="grid gap-4">
+                            <div className="grid gap-2">
+                              <Label htmlFor="drawer-name">Name</Label>
+                              <Input id="drawer-name" placeholder="Enter your name" />
+                            </div>
+                            <div className="grid gap-2">
+                              <Label htmlFor="drawer-email">Email</Label>
+                              <Input id="drawer-email" type="email" placeholder="Enter your email" />
+                            </div>
+                          </div>
+                        </div>
+                        <DrawerFooter>
+                          <Button>Save changes</Button>
+                          <DrawerClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                          </DrawerClose>
+                        </DrawerFooter>
+                      </DrawerContent>
+                    </Drawer>
+                    <Drawer direction="right">
+                      <DrawerTrigger asChild>
+                        <Button variant="outline">Open Right Drawer</Button>
+                      </DrawerTrigger>
+                      <DrawerContent>
+                        <DrawerHeader>
+                          <DrawerTitle>Settings</DrawerTitle>
+                          <DrawerDescription>Manage your preferences.</DrawerDescription>
+                        </DrawerHeader>
+                        <div className="p-4">
+                          <p className="text-sm text-muted-foreground">This drawer slides in from the right side.</p>
+                        </div>
+                        <DrawerFooter>
+                          <DrawerClose asChild>
+                            <Button variant="outline">Close</Button>
+                          </DrawerClose>
+                        </DrawerFooter>
+                      </DrawerContent>
+                    </Drawer>
+                  </div>
+                  <div className="flex gap-2">
+                    <Drawer direction="left">
+                      <DrawerTrigger asChild>
+                        <Button variant="outline">Open Left Drawer</Button>
+                      </DrawerTrigger>
+                      <DrawerContent>
+                        <DrawerHeader>
+                          <DrawerTitle>Navigation</DrawerTitle>
+                          <DrawerDescription>Browse menu items.</DrawerDescription>
+                        </DrawerHeader>
+                        <div className="p-4">
+                          <p className="text-sm text-muted-foreground">This drawer slides in from the left side.</p>
+                        </div>
+                        <DrawerFooter>
+                          <DrawerClose asChild>
+                            <Button variant="outline">Close</Button>
+                          </DrawerClose>
+                        </DrawerFooter>
+                      </DrawerContent>
+                    </Drawer>
+                    <Drawer direction="top">
+                      <DrawerTrigger asChild>
+                        <Button variant="outline">Open Top Drawer</Button>
+                      </DrawerTrigger>
+                      <DrawerContent>
+                        <DrawerHeader>
+                          <DrawerTitle>Notifications</DrawerTitle>
+                          <DrawerDescription>View your recent notifications.</DrawerDescription>
+                        </DrawerHeader>
+                        <div className="p-4">
+                          <p className="text-sm text-muted-foreground">This drawer slides in from the top.</p>
+                        </div>
+                        <DrawerFooter>
+                          <DrawerClose asChild>
+                            <Button variant="outline">Close</Button>
+                          </DrawerClose>
+                        </DrawerFooter>
+                      </DrawerContent>
+                    </Drawer>
                   </div>
                 </div>
               </CardContent>
@@ -744,6 +847,97 @@ const ComponentShowcase = () => {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Native Select */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Native Select</CardTitle>
+                <CardDescription>Native HTML select with custom styling</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="native-basic">Basic Native Select</Label>
+                  <NativeSelect id="native-basic">
+                    <NativeSelectOption value="">Select a fruit...</NativeSelectOption>
+                    <NativeSelectOption value="apple">Apple</NativeSelectOption>
+                    <NativeSelectOption value="banana">Banana</NativeSelectOption>
+                    <NativeSelectOption value="orange">Orange</NativeSelectOption>
+                    <NativeSelectOption value="grape">Grape</NativeSelectOption>
+                  </NativeSelect>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="native-grouped">Grouped Native Select</Label>
+                  <NativeSelect id="native-grouped">
+                    <NativeSelectOption value="">Select a timezone...</NativeSelectOption>
+                    <NativeSelectOptGroup label="North America">
+                      <NativeSelectOption value="est">Eastern Standard Time (EST)</NativeSelectOption>
+                      <NativeSelectOption value="cst">Central Standard Time (CST)</NativeSelectOption>
+                      <NativeSelectOption value="pst">Pacific Standard Time (PST)</NativeSelectOption>
+                    </NativeSelectOptGroup>
+                    <NativeSelectOptGroup label="Europe">
+                      <NativeSelectOption value="gmt">Greenwich Mean Time (GMT)</NativeSelectOption>
+                      <NativeSelectOption value="cet">Central European Time (CET)</NativeSelectOption>
+                    </NativeSelectOptGroup>
+                  </NativeSelect>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="native-disabled">Disabled</Label>
+                  <NativeSelect id="native-disabled" disabled>
+                    <NativeSelectOption value="">Disabled select</NativeSelectOption>
+                  </NativeSelect>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Input OTP */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Input OTP</CardTitle>
+                <CardDescription>One-time password input for verification codes</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-2">
+                  <Label>6-digit OTP</Label>
+                  <InputOTP maxLength={6}>
+                    <InputOTPGroup>
+                      <InputOTPSlot index={0} />
+                      <InputOTPSlot index={1} />
+                      <InputOTPSlot index={2} />
+                      <InputOTPSlot index={3} />
+                      <InputOTPSlot index={4} />
+                      <InputOTPSlot index={5} />
+                    </InputOTPGroup>
+                  </InputOTP>
+                </div>
+                <div className="space-y-2">
+                  <Label>With Separator</Label>
+                  <InputOTP maxLength={6}>
+                    <InputOTPGroup>
+                      <InputOTPSlot index={0} />
+                      <InputOTPSlot index={1} />
+                      <InputOTPSlot index={2} />
+                    </InputOTPGroup>
+                    <InputOTPSeparator />
+                    <InputOTPGroup>
+                      <InputOTPSlot index={3} />
+                      <InputOTPSlot index={4} />
+                      <InputOTPSlot index={5} />
+                    </InputOTPGroup>
+                  </InputOTP>
+                </div>
+                <div className="space-y-2">
+                  <Label>4-digit PIN</Label>
+                  <InputOTP maxLength={4}>
+                    <InputOTPGroup>
+                      <InputOTPSlot index={0} />
+                      <InputOTPSlot index={1} />
+                      <InputOTPSlot index={2} />
+                      <InputOTPSlot index={3} />
+                    </InputOTPGroup>
+                  </InputOTP>
                 </div>
               </CardContent>
             </Card>
@@ -1590,6 +1784,86 @@ const ComponentShowcase = () => {
                     <Button>Clear filters</Button>
                   </EmptyContent>
                 </Empty>
+              </CardContent>
+            </Card>
+
+            {/* Toast (react-toastify) */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Toast (react-toastify)</CardTitle>
+                <CardDescription>Notification messages for user feedback</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  <Button variant="outline" onClick={() => toast.success("Success! Your changes have been saved.")}>
+                    Success Toast
+                  </Button>
+                  <Button variant="outline" onClick={() => toast.error("Error! Something went wrong.")}>
+                    Error Toast
+                  </Button>
+                  <Button variant="outline" onClick={() => toast.warning("Warning! Please review your input.")}>
+                    Warning Toast
+                  </Button>
+                  <Button variant="outline" onClick={() => toast.info("Info: Here's some helpful information.")}>
+                    Info Toast
+                  </Button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      toast("Default toast message", {
+                        position: "top-right",
+                      })
+                    }
+                  >
+                    Top Right
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      toast("Default toast message", {
+                        position: "top-center",
+                      })
+                    }
+                  >
+                    Top Center
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      toast("Default toast message", {
+                        position: "bottom-right",
+                      })
+                    }
+                  >
+                    Bottom Right
+                  </Button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      toast.promise(new Promise(resolve => setTimeout(resolve, 2000)), {
+                        pending: "Loading...",
+                        success: "Operation completed!",
+                        error: "Something went wrong",
+                      })
+                    }
+                  >
+                    Promise Toast
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      toast("This will auto-close in 5 seconds", {
+                        autoClose: 5000,
+                      })
+                    }
+                  >
+                    Auto Close (5s)
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>

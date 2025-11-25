@@ -6,6 +6,7 @@ import { useEffect } from "react"
 import { logPageView } from "./utils/analytics"
 import { initGA } from "./utils/analytics"
 import ComponentsShowcasePage from "./pages/ComponentShowcasePage"
+import { ToastContainer } from "react-toastify"
 
 const App = () => {
   const { isDark, theme } = useConfigContext()
@@ -40,11 +41,15 @@ const App = () => {
   }, [theme])
 
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/component-showcase" element={<ComponentsShowcasePage />} />
-      <Route path="*" element={<PageNotFoundPage />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/component-showcase" element={<ComponentsShowcasePage />} />
+        <Route path="*" element={<PageNotFoundPage />} />
+      </Routes>
+
+      <ToastContainer theme="colored" />
+    </>
   )
 }
 
