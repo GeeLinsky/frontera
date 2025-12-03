@@ -10,7 +10,6 @@ import {
   TreePine,
   Mountain,
   Download,
-  Code,
 } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
@@ -19,7 +18,6 @@ import { linkClassName } from "@/lib/utils"
 import ThemeToggle from "@/components/theme/ThemeToggle"
 import ColorToggle from "@/components/color/ColorToggle"
 import { isDesktop } from "react-device-detect"
-import { Link } from "react-router-dom"
 import { useConfigContext } from "@/context/ConfigContext"
 
 export default function DigitalCard() {
@@ -46,22 +44,6 @@ export default function DigitalCard() {
               </TooltipTrigger>
               <TooltipContent>
                 <p>PDF Resume</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline" size="icon" className="h-8 w-8" asChild>
-                  <Link to="/component-showcase">
-                    <Code className="h-4 w-4" />
-                    <span className="sr-only">Component Showcase</span>
-                  </Link>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Component Showcase</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
